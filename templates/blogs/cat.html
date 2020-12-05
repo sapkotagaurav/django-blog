@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>{{cat.upper}} | Chronicles of Gaurav Sapkota</title>
+{% endblock title %}
+
+{% block search %}
+	<div class="section search-section">
+		<a href="#" class="close-search"><img src="{% static 'blogs/close.png' %}" alt="close"></a>
+		<div class="centered">
+			<form action="{% url 'search' %}" method="GET">
+				<input type="text" name="q" placeholder="Search here..">
+				<button type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+	{% endblock search %}  
+	
+	{% block preloader %}
+	{% endblock preloader %}
+	
+ 
+
+{% block header %}
+	<section class="header-wrapper style-two">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-12 text-left">
+					<a href="{%url 'home'%}" class="logo"><img src="{%static 'blogs/logo.png'%}" alt="logo"></a>
+					<a href="#" class="menu-click"><span></span><span></span><span></span></a>
+				</div>
+				<div class="col-lg-8 col-md-12">
+					<nav id="main-menu" class="text-center">
+						<ul>
+							<li><a href="{% url 'home' %}">Home</a></li>
+								
+							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Category</a><span class="submenu-toggle"></span>
+								<ul class="level-two">
+									
+							{% for cat in cats %}
+							<li><a href="{% url 'categories' cat %}">{{cat}}</a></li>
+							
+							{% endfor %}									
+								</ul>
+							</li>
+							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Year</a><span class="submenu-toggle"></span>
+								<ul class="level-two">
+									
+							{% for year in years %}
+								<li><a href="{% url 'year' year %}">{{ year}}</a></li>
+							
+									{% endfor %}										
+								</ul>
+							</li>
+							<li><a href="{% url 'gallery' %}">Gallery</a></li>
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-2 col-md-4 text-right">
+					<a href="#" class="search-icon"><img src="{% static 'blogs/search.png' %}" alt="search-icon"></a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	<section class="meta-title">
+		<div class="col-sm-12 text-center">
+			<div class="page-title pad-125 ">
+				<h1 class="has-animation" data-delay="0"><b>{{cat.upper}}</b></h1>
+			</div>
+		</div>
+	</section>
+
+{% endblock header %}
+
+{% block container %}
+
+
+	<section class="blog-post style-two mb75">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+                {% for post in posts %}
+					<article class="has-animation animate-in" data-delay="0">
+						<div class="entry-media">
+							<img src="{{ post.cover }}"  alt="post-image">
+						</div>
+						<div class="entry-meta-content">
+							<span class="entry-meta"><span>By</span> <a href="#">{{post.author}} </a>   <span>in</span>  <a href="{% url 'categories' post.category%}">{{post.category}}</a> <span>at</span><a href="{% url 'year' post.created_on|date:'Y'%}">{{post.created_on|date:'Y'}} </a>/{{post.created_on|date:'M/D'}}</a></span>
+							<h2 class="entry-title"><a href={% url 'post_detail' post.slug%}>{{post.title}}</a></h2>
+						</div>
+						
+						<div class="entry-content-bottom">
+							<p class="entry-content">{{post.blog|safe|slice:"0:300"}}</p>
+							<a href="#" class="entry-read-more"><span></span>Read More</a>
+							<ul class="social-share list-inline">
+								<li class="list-inline-item"><a href="https://www.facebook.com/sharer/sharer.php?u=gaurabsapkota.com.np{% url 'post_detail' post.slug %}" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+								<li class="list-inline-item"><a href="http://twitter.com/share?text={{post.title}}&url=gaurabsapkota.com.np{% url 'post_detail' post.slug%}"><i class="fab fa-twitter-square"></i></a></li>
+							</ul>
+							<span class="entry-meta bold float-right">Share</span>
+						</div>
+					</article>
+					<br><br><br><br><br><br>
+                {% endfor %}
+				
+					 
+
+				</div>
+			</div>
+		
+		</div>
+	</section>
+
+{% endblock container %}
+
+{% block footer %}
+	<section class="footer-wrapper pad-75 bg-lightblue">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<ul class="social-icons-two light list-inline">
+
+						<li class="list-inline-item"><a href="https://www.facebook.com/365d736ad1b2e3ffcb411030c813e891"><i class="fab fa-facebook-square"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.twitter.com/iamgvs906"><i class="fab fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="https://github.com/sapkotagaurav"><i class="fab fa-github"></i></a></li>
+
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock footer %}
+

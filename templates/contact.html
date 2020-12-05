@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Contact</title>
+{% endblock title %}
+
+
+	{% block header %}
+	<section class="header-wrapper style-two">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-12 text-left">
+					<a href="{%url 'home'%}" class="logo"><img src="{%static 'blogs/logo.png'%}" alt="logo"></a>
+					<a href="#" class="menu-click"><span></span><span></span><span></span></a>
+				</div>
+				<div class="col-lg-8 col-md-12">
+					<nav id="main-menu" class="text-center">
+						<ul>
+							<li><a href="{% url 'home' %}">Home</a></li>
+								
+							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Category</a><span class="submenu-toggle"></span>
+								<ul class="level-two">
+									
+							{% for cat in cats %}
+							<li><a href="{% url 'categories' cat %}">{{cat}}</a></li>
+							
+							{% endfor %}									
+								</ul>
+							</li>
+							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Year</a><span class="submenu-toggle"></span>
+								<ul class="level-two">
+									
+							{% for year in years %}
+								<li><a href="{% url 'year' year %}">{{ year}}</a></li>
+							
+									{% endfor %}										
+								</ul>
+							</li>
+							<li><a href="{% url 'gallery' %}">Gallery</a></li>
+							<li><a href="contact">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	
+	
+	<section class="meta-title">
+		<div class="col-sm-12 text-center">
+			<div class="page-title pad-125 ">
+				<h1 class="has-animation" data-delay="0"><b>{{cat.upper}}</b></h1>
+			</div>
+		</div>
+	</section>
+
+{% endblock header %}
+
+
+{% block container %}
+
+
+	<section class="contact-wrapper has-animation" data-delay="0">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="map" style="height: 400px;"></div>
+					<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCOdKtT5fapH3_OfhV3HFeZjqFs4OfNIew&callback=mapinitialize" type="text/javascript"></script>
+		            <script type="text/javascript">
+		                function mapinitialize() {
+		                     const home = { lat:27.688858,lng:85.327385};
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 14,
+    center: home,
+  });
+  const marker = new google.maps.Marker({
+    position: home,
+    map: map,
+    title: "Meet me here"
+  });           
+		                        
+		                }
+		                mapinitialize();
+		            </script>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <section class="contact-wrapper pad-75 has-animation" data-delay="0">
+		<div class="container">
+			<div class="row">
+{% if p == 0 %}
+
+<div class="col-lg-10 text-left offset-lg-1">
+					<h2>Say Hi!</h2>
+					<p>I will reply if i am alive.</p>
+
+					<div id="contact-formular">
+
+						<div id="notResults" class="dark f-small error"></div>
+						<div id="MainResult" class="error"></div>
+						
+						
+
+						<form id="contact-form" class="checkform" action="{% url 'contact' %}" method="POST" >
+						{% csrf_token %}
+                      	
+			                <div class="form-row clearfix form-field">
+			                    <label for="name" class="req">Name *</label>
+			                    <input type="text" name="name" class="name" id="name" value="" placeholder="Name" />
+			                </div>
+			                
+			                <div class="form-row clearfix form-field">
+			                    <label for="email" class="req">Email *</label>
+			                    <input type="text" name="email" class="email" id="email" value="" placeholder="Email"/>
+							</div>
+			                
+			                <div class="form-row clearfix textbox form-field">
+			                    <label for="message" class="req">Message *</label>
+			                    <textarea name="message" class="message" id="message" rows="15" cols="50" placeholder="Message"></textarea>
+			                </div>
+			                
+			                <div id="form-note">
+			                    <div class="alert alert-error pl-0 pr-0">
+			                        <strong>Error</strong>: Please check your entries!
+			                    </div>
+			                </div>
+			                
+			                <div class="form-row form-submit">
+			                	<div class="button-4">
+			    					<div class="eff-4"></div>
+			                    	<input type="submit" name="submit_form" class="send_message" value="Send Message" />
+			                    </div>
+			                </div>
+			        
+			                
+			            
+			            </form>
+
+					</div>
+
+
+				</div>
+				{% else %}
+				<div class="col-lg-10 text-left offset-lg-1">
+				<h2>Your Message has been sent.</h2>
+					<p>I will reply if i am alive.</p>
+					<p>A small email verifying this is sent to your email.</p>
+					</div>
+				{% endif %}
+				
+				
+			</div>
+		</div>
+	</section>
+{% endblock container %}
+{% block footer %}
+<section class="footer-wrapper pad-75 bg-lightblue">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-4 widget">
+					<span class="widget-title2">Category</span>
+					<ul class="widget-link">
+					{% for category in cats %}
+					<li><a href="{% url 'categories' category%}">{{ category.category.upper }}</a></li>
+					{% endfor %}
+						
+						
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-4 widget">
+					<span class="widget-title2">Links</span>
+					<ul class="widget-link">
+						<li><a href="#">About Me</a></li>
+						<li><a href="#">Contact</a></li>
+						
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-4 widget">
+					<span class="widget-title2">Recents</span>
+					<ul class="widget-link">
+						{% for post in posts|slice:"0:5" %}
+						<li><a href="{% url 'post_detail' post.slug%}">{{post.title|slice:"0:17"}}...</a></li>
+						{% endfor %}
+						
+						
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+{% endblock footer %}

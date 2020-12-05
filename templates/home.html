@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Gaurav Sapkota</title>
+
+	<link rel="icon" href="bitmap.png" type="image/png" />
+
+	<link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="{%static 'blogs/css/reset.css' %}">
+	<link rel="stylesheet" href="{%static 'blogs/css/styles.css' %}">
+
+	 <link rel="stylesheet" href="{%static 'blogs/css/themes/indigo-white.css' %}"> 
+	
+</head>
+<body>
+	<main>
+		<div class="intro">Gaurav Sapkota</div>
+		<div class="tagline"> <span id='t'></span><span class='blink'>_</span></div>
+		<!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
+		<div class="icons-social">
+			<a target="_blank" href="https://github.com/sapkotagaurav"><i class="fab fa-github"></i></a>
+			<a target="_blank" href="https://twitter.com/iamgvs906"><i class="fab fa-twitter"></i></a>
+			<a target="_blank" href="https://www.facebook.com/365d736ad1b2e3ffcb411030c813e891/"><i class="fab fa-facebook"></i></a>
+			<a target="_blank" href="https://dev.to/s4pk0t4"><i class="fab fa-dev"></i></a>
+    </div>
+    
+    <div class='devto'><button class='btn' onclick='window.location.href="{% url 'home' %}"'>Enter Site</button></div>
+	</main>
+</body>
+	<script src="{%static 'blogs/js/typewriter.js' %}"></script>
+</html>

@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+	<!-- preloader -->
+	{% block title %}
+	<title>Chronicles of Gaurav Sapkota</title>
+	{% endblock title %}
+	{% block preloader %}
+	
+    <div id="loader-wrapper">
+		<div class="loader-img"><img src="{%static 'blogs/bitmap.png'%}" alt="preloader"></div>
+		<div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+	</div>
+	{% endblock preloader %}
+	{% block search %}
+	<div class="section search-section">
+		<a href="#" class="close-search"><img src="{% static 'blogs/close.png' %}" alt="close"></a>
+		<div class="centered">
+			<form action="{% url 'search' %}" method="GET">
+				<input type="text" name="q" placeholder="Search here..">
+				<button type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+	{% endblock search %}
+{% block header %}
+<section class="top-header style-eight pad-125 bg-pattern-2" style="background-image: url({% static 'blogs/background.jpg' %});">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 offset-xl-3 col-md-12 text-center">
+					<img src="{% static 'blogs/logo.png' %}" alt="avatar" class="avatar-img">
+					<div class="clearfix"></div>
+					<h1 class="has-animation animate-in" data-delay="10">My name is Gaurav Sapkota. I exist.</h1>
+
+					<ul class="social-text light list-inline has-animation animate-in" data-delay="20">
+						<li class="list-inline-item"><a class="text-facebook" href="https://www.facebook.com/365d736ad1b2e3ffcb411030c813e891/">Facebook</a></li>
+						<li class="list-inline-item"><a class="text-twiiter" href="https://twitter.com/iamgvs906">Twitter</a></li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="header-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-12 text-left">
+					<a href="" class="logo"><img height='40' width=40 src="{% static 'blogs/bitmap.png' %}" alt="logo"></a>
+					<a href="#" class="menu-click"><span></span><span></span><span></span></a>
+				</div>
+				<div class="col-lg-8 col-md-12">
+					<nav id="main-menu" class="text-center">
+						<ul>
+							<li class="has-submenu"><a href="{% url 'home' %}">Home</a>
+								
+							</li>
+							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Category</a><span class="submenu-toggle"></span>
+								<ul class="level-two">
+									
+							{% for cat in queryset.cats %}
+							<li><a href="{% url 'categories' cat %}">{{cat}}</a></li>
+							
+							{% endfor %}									
+								</ul>
+							</li>
+							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Year</a><span class="submenu-toggle"></span>
+								<ul class="level-two">
+									
+									{% for year in years %}
+								<li><a href="{% url 'year' year %}">{{ year}}</a></li>
+							
+									{% endfor %}									
+								</ul>
+							</li>
+							<li><a href="{% url 'gallery' %}">Gallery</a></li>
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-2 col-md-4 text-right">
+					<a href="#" class="search-icon"><img src="{% static 'blogs/search.png' %}" alt="search-icon"></a>
+				</div>				
+			</div>
+		</div>
+	</section>
+{% endblock header %}
+{% block container %}
+
+	<section class="blog-post style-three pad-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3 offset-sm-1 col-sm-10">
+				{% for post in queryset.posts %}
+					<article class="has-animation" data-delay="0">
+						<div class="entry-meta-content">
+							<h2 class="entry-title"><span>{{post.title|slice:"0:1"}}</span><a href="{% url 'post_detail' post.slug%}">{{post.title}}</a></h2>
+							<span class="entry-meta">By <a href="#">{{post.author}}</a> in <a href="{% url 'categories' post.category%}">{{post.category}}</a> in<a href="{% url 'year' post.created_on|date:'Y'%}"> {{post.created_on|date:'Y'}}</a>/{{post.created_on|date:'M/d'}}</span>
+						</div> 
+						<div class="entry-content-bottom" >
+							<p class="entry-content" >{{post.blog|safe|slice:"0:300"}} </p>
+							<a href="{% url 'post_detail' post.slug%}" class="entry-read-more"><span></span>Read More</a>
+							<!---<ul class="social-share list-inline">
+								<li class="list-inline-item"><a href="#"><i class="fab fa-github"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+							</ul> 
+							<span class="entry-share">Share</span> -->
+						</div>
+					</article>
+					{% endfor %}
+					
+
+									 
+
+				</div>
+			</div>
+			<!-- load more -->
+			<div class="row">
+				<div class="d-flex justify-content-center col-sm-12">
+					<div class="button-4">
+					    <div class="eff-4"></div>
+					    <a href="#"> Load More</a>
+					</div>
+				</div>
+			</div>
+			<!-- load more -->
+		</div>
+	</section>
+{% endblock container %}
+{% block footer %}
+<section class="footer-wrapper pad-75 bg-lightblue">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-4 widget">
+					<span class="widget-title2">Category</span>
+					<ul class="widget-link">
+					{% for category in queryset.cats %}
+					<li><a href="{% url 'categories' category%}">{{ category.category.upper }}</a></li>
+					{% endfor %}
+						
+						
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-4 widget">
+					<span class="widget-title2">Links</span>
+					<ul class="widget-link">
+						<li><a href="{% url 'gallery' %}">Gallery</a></li>
+						<li><a href="{% url 'contact' %}">Contact</a></li>
+						
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-4 widget">
+					<span class="widget-title2">Recents</span>
+					<ul class="widget-link">
+						{% for post in queryset.posts|slice:"0:5" %}
+						<li><a href="{% url 'post_detail' post.slug%}">{{post.title|slice:"0:17"}}...</a></li>
+						{% endfor %}
+						
+						
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+{% endblock footer %}
+	<!-- footer wrapper -->
+	
+	<!-- footer-wrapper -->
