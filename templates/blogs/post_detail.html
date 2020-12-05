@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load social_share %}
 {% block title %}
 
 	<title>{{object.title}} | Chronicles of Gaurav Sapkota</title>
@@ -98,6 +99,8 @@
 					<div class="entry-share-div">
 						<h5>Share :</h5>
 						<ul class="social-text light list-inline">
+							{% post_to_facebook request.path facebook %}
+
 							<li class="list-inline-item"><a class="text-facebook" href="https://www.facebook.com/sharer/sharer.php?u=crogaurabsapkota.herokuapp.com{% url 'post_detail' post.slug %}" target="_blank">facebook</a></li>
 							<li class="list-inline-item"><a class="text-twitter" href="http://twitter.com/share?text={{post.title}}&url=crogaurabsapkota.herokuapp.com{% url 'post_detail' post.slug%}">Twitter</a></li>
 						</ul>
@@ -107,7 +110,7 @@
 
 				
 
-				<div class="fb-comments" data-href="https://gaurabsapkota.com.np{% url 'post_detail' object.slug%}" data-numposts="5" data-width=""></div>
+				<div class="fb-comments" data-href="https://crogaurabsapkota.herokuapp.com{% url 'post_detail' object.slug%}" data-numposts="5" data-width=""></div>
 
 
 			</div>

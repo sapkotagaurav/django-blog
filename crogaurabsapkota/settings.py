@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'gallery'
 ]
+INSTALLED_APPS += ['django_social_share']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
