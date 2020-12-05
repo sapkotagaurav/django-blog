@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load social_share %}
 {% block title %}
 
 	<title>{{object.title}} | Chronicles of Gaurav Sapkota</title>
@@ -99,10 +98,9 @@
 					<div class="entry-share-div">
 						<h5>Share :</h5>
 						<ul class="social-text light list-inline">
-							{% post_to_facebook request.path "Facebook" %}
 
-							<li class="list-inline-item"><a class="text-facebook" href="https://www.facebook.com/sharer/sharer.php?u=crogaurabsapkota.herokuapp.com{% url 'post_detail' post.slug %}" target="_blank">facebook</a></li>
-							<li class="list-inline-item"><a class="text-twitter" href="http://twitter.com/share?text={{post.title}}&url=crogaurabsapkota.herokuapp.com{% url 'post_detail' post.slug%}">Twitter</a></li>
+							<li class="list-inline-item"><a class="text-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{request.path}}" target="_blank">facebook</a></li>
+							<li class="list-inline-item"><a class="text-twitter" href="http://twitter.com/share?text={{post.title}}&url={{request.path}}">Twitter</a></li>
 						</ul>
 					</div>
 				
