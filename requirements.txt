@@ -9,3 +9,4 @@ whitenoise==5.2.0
 dj-database-url
 python-decouple
 gunicorn==20.0.4
+django_social_share
