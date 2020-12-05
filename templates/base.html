@@ -1,0 +1,58 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en-US"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+{% block title %}
+
+{% endblock title %}
+
+	<meta name="description" content="Chronicles of Gaurav Sapkota"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'blogs/logo.png' %}"/>
+
+	<!-- STYLESHEETS -->
+	<link href="{% static 'blogs/css/css.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'blogs/css/bootstrap.css' %}" type="text/css" media="all">
+	<link rel="stylesheet" href="{% static 'blogs/css/style.css' %}" type="text/css" media="all">
+
+	<link href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="{% static 'blogs/css/owl.css' %}"/>
+	<link rel="stylesheet" href="{% static 'blogs/css/owl_002.css' %}">
+
+	
+
+</head>
+<body>
+{% block search %}
+
+{% endblock search %}
+
+{% block preloader %}
+
+{% endblock preloader %}
+
+
+
+
+{% block header %}
+{% endblock header %}
+
+{% block container %}
+{% endblock container %}
+
+
+{% block footer %}
+{% endblock footer %}
+
+<script src="{% static 'blogs/js/jquery-1.js' %}"></script>
+<script src="{% static 'blogs/js/popper.js' %}"></script>
+<script src="{% static 'blogs/js/plugin.js' %}"></script>
+<script src="{% static 'blogs/js/main.js' %}"></script>
+
+</body>
+</html>
