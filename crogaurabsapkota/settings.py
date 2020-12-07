@@ -137,7 +137,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'iamgvs906@gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = config('E_password')
+EMAIL_HOST_PASSWORD = config('hphuaweiacergoogle')
 
 
 CKEDITOR_CONFIGS = {
