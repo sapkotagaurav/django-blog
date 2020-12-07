@@ -4,6 +4,19 @@
 	{% block title %}
 	<title>Chronicles of Gaurav Sapkota</title>
 	{% endblock title %}
+	{% block metas %}
+
+	<meta property="og:title" content="Chronicles Of Gaurav Sapkota"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="Portfolio and blogs written by Gaurav Sapkota."/>
+	<meta property="og:image" content="{% static 'blogs/logo.png' %}"/>
+	 <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@iamgvs906">
+    <meta name="twitter:creator" content="@iamgvs906">
+    <meta name="twitter:title" content="Chronicles Of Gaurav Sapkota">
+    <meta name="twitter:description" content="Portfolio and blogs written by Gaurav Sapkota.">
+    <meta name="twitter:image" content="{% static 'blogs/logo.png' %}">
+	{% endblock metas %}
 	{% block preloader %}
 	
     <div id="loader-wrapper">
