@@ -36,13 +36,13 @@ def contact(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        message2 = EmailMultiAlternatives("RE:"+name, email_body.format(name,message), 'iamgvs906@gmail.com', [email])
+        message2 = EmailMultiAlternatives("RE:"+name, email_body.format(name,message), 'sapkotagaurav75@gmail.com', [email])
         message2.content_subtype = "html"
       #  message2.attach_alternative(email_body.format(name,message),'html')
         
         try:
             message2.send()
-            send_mail("Contact from your site","Sender:{0}\n\n name{1}\n\n message:\n{2}".format(email,name,message),email,['iamgvs906@gmail.com'])
+            send_mail("Contact from your site","Sender:{0}\n\n name{1}\n\n message:\n{2}".format(email,name,message),email,['sapkotagaurav75@gmail.com'])
             context = {'p': 1, 'posts': posts,
                    'cats': Category.objects.all(), 'years': years}
             return HttpResponse(template.render(context, request))
