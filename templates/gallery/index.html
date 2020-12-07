@@ -3,10 +3,22 @@
 
 {% load static %}
 {% block title %}
-<title></title>
+<title>Gallery</title>
 <link rel='stylesheet' href='{% static 'gallery/css/photoswipe.css' %}'>
 <link rel='stylesheet' href='{% static 'gallery/css/default-skin.css' %}'>
 {% endblock title %}
+{% block metas %}
+<meta property="og:title" content="Chronicles Of Gaurav Sapkota"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="Photos of Gaurav Sapkota."/>
+	<meta property="og:image" content="https://i.imgur.com/xXcc7rkh.jpg"/>
+	 <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@iamgvs906">
+    <meta name="twitter:creator" content="@iamgvs906">
+    <meta name="twitter:title" content="Chronicles Of Gaurav Sapkota">
+    <meta name="twitter:description" content="Photos Gaurav Sapkota.">
+    <meta name="twitter:image" content="https://i.imgur.com/xXcc7rkh.jpg">
+{% endblock metas %}
 
 {% block container %}
 <style>

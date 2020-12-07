@@ -5,6 +5,18 @@
 	<title>{{object.title}} | Chronicles of Gaurav Sapkota</title>
 
 {% endblock title %}
+{% block metas %}
+<meta property="og:title" content="{{object.title}}"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:description" content="{{object.description}}"/>
+	<meta property="og:image" content="{{object.cover}}"/>
+	 <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@iamgvs906">
+    <meta name="twitter:creator" content="@iamgvs906">
+    <meta name="twitter:title" content="{{object.title}}">
+    <meta name="twitter:description" content="{{object.description}}">
+    <meta name="twitter:image" content="{{object.cover}}">
+{% endblock metas %}
 
 
 	<!-- preloader -->
