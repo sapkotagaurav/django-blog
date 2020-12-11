@@ -30,27 +30,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def contact(request):
-    template = loader.get_template('contact.html')
-    if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
 
-        b =  Contact.objects.create(name=name,email=email,message=message)
-        b.save()
-
-        context = {'p': 1, 'posts': posts,
-                   'cats': Category.objects.all(), 'years': years}
-        return HttpResponse(template.render(context, request))
-
-
-    else:
-        context = {'p': 0, 'posts': posts,
-                   'cats': Category.objects.all(), 'years': years}
-        return HttpResponse(template.render(context, request))
-
-    
 
 
 def error404(request, exception):
