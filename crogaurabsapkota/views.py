@@ -1,13 +1,6 @@
 from django.http import HttpResponse
-from django.template import loader
-from django.core.mail import send_mail, BadHeaderError
+
 from chronicles.models import Category, Post
-from .models import Contact
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from django.core.mail import EmailMultiAlternatives
-
-
 
 
 posts = Post.objects.filter(status=1).order_by('created_on')
