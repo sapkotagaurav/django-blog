@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from crogaurabsapkota.apps.chronicles.models import Category, Post
+from crogaurabsapkota.chronicles.models import Category, Post
 from .models import Contact
 
 
