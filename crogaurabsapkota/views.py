@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.template import loader
 
 from chronicles.models import Category, Post
 
