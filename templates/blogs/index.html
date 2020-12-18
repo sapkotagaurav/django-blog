@@ -79,7 +79,7 @@
 							<li class="has-submenu"><a href="javascript:void(0)" style="cursor:default;">Year</a><span class="submenu-toggle"></span>
 								<ul class="level-two">
 									
-									{% for year in years %}
+									{% for year in queryset.years %}
 								<li><a href="{% url 'year' year %}">{{ year}}</a></li>
 							
 									{% endfor %}									
