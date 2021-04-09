@@ -12,7 +12,7 @@ urlpatterns = staticfiles_urlpatterns()
 
 urlpatterns = [
     path('',views.index,),
-    path('adminloginhere/', admin.site.urls),
+    path('a/d/m/i/n/l/o/g/i/n/h/e/r/e/', admin.site.urls),
     path("contact/", include('contact.urls')),
     path('blogs/', include('chronicles.urls')),
     path('gallery/', include('gallery.urls')),
