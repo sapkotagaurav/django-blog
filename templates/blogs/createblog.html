@@ -6,7 +6,8 @@
 <h2>Add a Post</h2>
 {% if user.is_authenticated %}
 <form method="post">
-  {% csrf_token %} {{ form.as_p }}
+  {% csrf_token %} {{ form.text|safe }}
+  {{form.media}}
   <button type="submit">Add</button>
   
   
