@@ -112,7 +112,7 @@
 						</div> 
 						<div class="entry-content-bottom" >
 							<p class="entry-content" >{{post.blog|safe|slice:"0:300"}} </p>
-							<a href="{{post.slug}}" class="entry-read-more"><span></span>Read More</a>
+							<a href="{% url 'post_detail' post.slug%}" class="entry-read-more"><span></span>Read More</a>
 							<!---<ul class="social-share list-inline">
 								<li class="list-inline-item"><a href="#"><i class="fab fa-github"></i></a></li>
 								<li class="list-inline-item"><a href="#"><i class="fa fa-heart"></i></a></li>
