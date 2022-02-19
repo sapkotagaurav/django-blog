@@ -91,6 +91,7 @@
 					</nav>
 				</div>
 				<div class="col-lg-2 col-md-4 text-right">
+					{% if user.is_authenticated %} Hi {{user}}{% endif %}
 					<a href="#" class="search-icon"><img src="{% static 'blogs/search.png' %}" alt="search-icon"></a>
 				</div>				
 			</div>
