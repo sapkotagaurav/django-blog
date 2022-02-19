@@ -1,16 +1,20 @@
-{% extends 'base.html' %} {% load static %} {% block title %}Create
-Event{%endblock %} {% block style %}
+{% extends 'base.html' %} {% load static %} {% block title %}Add A Post{%endblock %} {% block style %}
 <link href="{% static 'sportiasts/main.css' %}" rel="stylesheet" />
 {% endblock style %} {% block container %}
 <a href="{% url 'home' %}"><button class="btn btn-primary">Home</button></a>
 
-<h2>Create Event</h2>
+<h2>Add a Post</h2>
 {% if user.is_authenticated %}
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Create</button>
+  <button type="submit">Add</button>
   
   
 </form>
   {% endif %}
+  {% if not user.is_authenticated %}
+  <script>windows.href ="/a"
+
+  {% endif %}
+  
 {% endblock %}
