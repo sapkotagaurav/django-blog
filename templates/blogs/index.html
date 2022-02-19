@@ -91,7 +91,7 @@
 					</nav>
 				</div>
 				<div class="col-lg-2 col-md-4 text-right">
-					{% if user.is_authenticated %} Hi {{user}}{% endif %}
+					{% if user.is_authenticated %} Hi <a href="{% url 'addpost' %}">{{user}}</a>{% endif %}
 					<a href="#" class="search-icon"><img src="{% static 'blogs/search.png' %}" alt="search-icon"></a>
 				</div>				
 			</div>
@@ -160,7 +160,7 @@
 					<span class="widget-title2">Recents</span>
 					<ul class="widget-link">
 						{% for post in queryset.posts|slice:"0:5" %}
-						<li><a href="{% url 'post_detail' post.slud%}">{{post.title|slice:"0:17"}}...</a></li>
+						<li><a href="{% url 'post_detail' post.slug%}">{{post.title|slice:"0:17"}}...</a></li>
 						{% endfor %}
 						
 						
