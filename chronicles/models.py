@@ -28,7 +28,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, verbose_name='Category',related_name='Post', on_delete=models.CASCADE)
     blog = RichTextField()
     cover = models.URLField(max_length=200, default='https://i.imgur.com/KdX8Fpu.jpg')
-    updated_on = models.DateTimeField(auto_now=False,)
+    updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
 

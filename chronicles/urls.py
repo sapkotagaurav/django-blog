@@ -9,6 +9,7 @@ urlpatterns = [
     path('categories/<str:cate>',views.Categories, name='categories'),
     path('year/<int:year>',views.Year, name='year'),
     path('post/<slug:slug>', views.PostDetailView.as_view(), name='post_detail'),
-    path("search/", views.Search, name="search")
+    path("search/", views.Search, name="search"),
+    path("addpost/", views.CreatePost.as_view(), name="addpost"),
     
 ]

@@ -1,7 +1,10 @@
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views import generic
 from django.http import HttpResponse
 from django.template import loader
 from . import models
+from . import forms
 
 posts = models.Post.objects.filter(status=1).order_by('created_on').reverse()
 years = []
@@ -63,4 +66,16 @@ class PostDetailView(generic.DetailView):
         context["years"] = years
         context['posts']=posts
         return context
+
+class CreatePost(generic.CreateView):
+    form_class = forms.Post
+    success_url = reverse_lazy('home')
+    template_name = 'sportiasts/createevent.html'
+
+
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.save()
+        return redirect('home')
     
