@@ -70,7 +70,7 @@ class PostDetailView(generic.DetailView):
 class CreatePost(generic.CreateView):
     form_class = forms.Post
     success_url = reverse_lazy('home')
-    template_name = 'sportiasts/createevent.html'
+    template_name = 'blogs/createblog.html'
 
 
 
