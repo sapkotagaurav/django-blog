@@ -46,6 +46,14 @@ def Year(request, year):
     return HttpResponse(template.render({'cat': str(year), 'posts': posts, 'years':years,'cats':cats},request))
 
 
+def Author(request, author):
+    template = loader.get_template('blogs/cat.html')
+    cats = models.Category.objects.all()
+    posts = models.Post.objects.filter(status=1).filter(
+        author__username=author).order_by('created_on').reverse()
+    return HttpResponse(template.render({'cat': str(author), 'posts': posts, 'years':years,'cats':cats},request))
+
+
 def Search(request):
     template = loader.get_template('blogs/cat.html')
     cats = models.Category.objects.all()
