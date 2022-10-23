@@ -46,3 +46,14 @@ class Post(models.Model):
     def __unicode__(self):
         return
 
+class Comments(models.Model):
+    post = models.ForeignKey(to=Post,related_name="comment_of_blog",on_delete=models.CASCADE)
+    comment = RichTextField()
+    author = models.CharField(blank=False, max_length=50)
+    created_on = models.DateTimeField( auto_now_add=True,)
+    status = models.IntegerField(choices=STATUS, default=1)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        rep = "Reply" if self.parent else "main"
+        return f"Comment by {self.author} in {self.post}, {rep}, {self.id}"

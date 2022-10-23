@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.http import HttpResponse
 from django.template import loader
@@ -64,16 +64,40 @@ def Search(request):
     return HttpResponse(template.render({'cat': "results for: "+q, 'posts': posts, 'years':years,'cats':cats},request))
 
 
-class PostDetailView(generic.DetailView):
+class PostDetailView(generic.edit.FormMixin, generic.DetailView):
     model = models.Post
     cats = models.Category.objects.all()
+    form_class = forms.Comment
     template_name = "blogs/post_detail.html"
+
+    def get_success_url(self):
+        return reverse('post_detail',kwargs={'slug':self.object.slug})
+
+
+
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(PostDetailView, self).get_context_data(**kwargs)
         context["cats"] = self.cats
         context["years"] = years
         context['posts']=posts
+        context['comments'] = self.object.comment_of_blog.all()
+        context['form'] = forms.Comment
         return context
+
+    def post(self, request, *args, **kwargs):
+        
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.post = self.get_object()
+        form.save()
+        return super(PostDetailView, self).form_valid(form)
 
 class CreatePost(generic.CreateView):
     form_class = forms.Post

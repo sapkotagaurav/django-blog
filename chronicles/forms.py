@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Comments, Post
 from django.contrib.auth.models import User
 
 
@@ -10,3 +10,9 @@ class Post(forms.ModelForm):
         fields = ("title","description","category","blog","cover","status")
         widgets = {
         }
+
+class Comment(forms.ModelForm):
+    
+    class Meta:
+        model = Comments
+        fields =("author","comment",)

@@ -118,7 +118,28 @@
 				
 				</div>
 
-				
+				<div>
+					{% for comm in comments %}
+					{% if comm.replies %}
+					{% for rep in com.replies %}{% endfor %}
+					
+					{% else %}{% endif %}
+					
+					
+					{% endfor %}
+
+
+
+				</div>
+
+				<div>
+					<form method=post>
+						{% csrf_token %}
+						{{form.media}}
+						{{form.as_p |safe}}
+						<input type=submit value="post"></input>
+					</form>
+				</div
 
 				<div class="fb-comments" data-href="https://crogaurabsapkota.herokuapp.com{% url 'post_detail' object.slug%}" data-numposts="5" data-width=""></div>
 
