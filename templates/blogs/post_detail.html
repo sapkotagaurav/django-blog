@@ -141,12 +141,12 @@
 						
 						{% if f.label != "Author" %}
 						{{f.label}}:
-						{{f|safe}}
+						{{f}}
 						{% endif %}
 						
 						{% endfor %}
 						{% else %}
-						{{form.as_p|safe}}
+						{{form.as_p}}
 						
 
 
