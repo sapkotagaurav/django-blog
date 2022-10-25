@@ -10,3 +10,4 @@ dj-database-url
 python-decouple
 gunicorn==20.0.4
 django_social_share
+django_bleach
