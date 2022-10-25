@@ -137,7 +137,7 @@ STATIC_ROOT =os.path.join(BASE_DIR,'staticfiles')
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'skin': 'moono-lisa',
+        'skin': 'moono',
          #'skin': 'office2013',
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
@@ -223,5 +223,3 @@ CKEDITOR_CONFIGS = {
         ],
         }
 }
-BLEACH_ALLOWED_TAGS=['p','br','img', 'b', 'i', 'u', 'em', 'strong', 'a']
-BLEACH_ALLOWED_ATTRIBUTES=['href','width','height']
