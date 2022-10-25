@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'chronicles',
     'ckeditor',
     'gallery',
-    'django_bleach'
 ]
 INSTALLED_APPS += ['django_social_share']
 
