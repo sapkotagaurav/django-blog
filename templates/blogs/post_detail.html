@@ -135,8 +135,7 @@
 				<div>
 					<form method=post>
 						{% csrf_token %}
-						<script src="/static/ckeditor/ckeditor-init.js" data-ckeditor-basepath="/static/ckeditor/ckeditor/" id="ckeditor-init-script"></script>
-<script src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+						
 						{% if user.is_authenticated %}
 						Commenting as <b>{{user.get_full_name}}</b><br>
 						{% for f in form %}
@@ -153,7 +152,7 @@
 
 
 						{% endif %}
-						
+						{{form.media}}
 						<input type=submit value="post"></input>
 					</form>
 				</div
