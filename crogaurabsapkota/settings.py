@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'contact',
     'chronicles',
     'ckeditor',
-    'gallery'
+    'gallery',
+    'django_bleach'
 ]
 INSTALLED_APPS += ['django_social_share']
 
@@ -137,7 +138,7 @@ STATIC_ROOT =os.path.join(BASE_DIR,'staticfiles')
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'skin': 'moono',
+        'skin': 'moono-lisa',
          #'skin': 'office2013',
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
@@ -201,5 +202,27 @@ CKEDITOR_CONFIGS = {
             'video',
 
         ]),
-    }
+    },
+    'comment':{
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+                        {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor','Youtube']},
+                        {'name': 'insert',
+             'items': ['Image','base64image','-' ,'easyimage','Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             '/',
+                         {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+
+           
+            '/',  # put this to force next toolbar on new line
+            {'name': 'toolbar_custom', 'items': [
+                # put the name of your editor.ui.addButton here
+                'Preview',
+                'Maximize',
+
+            ]},
+        ],
+        }
 }
+BLEACH_ALLOWED_TAGS=['p','br','img', 'b', 'i', 'u', 'em', 'strong', 'a']
+BLEACH_ALLOWED_ATTRIBUTES=['href','width','height']

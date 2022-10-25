@@ -48,8 +48,8 @@ class Post(models.Model):
 
 class Comments(models.Model):
     post = models.ForeignKey(to=Post,related_name="comment_of_blog",on_delete=models.CASCADE)
-    comment = RichTextField()
-    author = models.CharField(blank=False, max_length=50)
+    comment = RichTextField(config_name="comment")
+    author = models.CharField(blank=True, max_length=50)
     created_on = models.DateTimeField( auto_now_add=True,)
     status = models.IntegerField(choices=STATUS, default=1)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)

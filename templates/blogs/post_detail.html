@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{%load bleach_tags%}
 {% block title %}
 
 	<title>{{object.title}} | Chronicles of Gaurav Sapkota</title>
@@ -27,7 +28,6 @@
 	</div>
 {% block search %}
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="ujm2QLKd"></script>
 	<div class="section search-section">
 		<a href="#" class="close-search"><img src="{% static 'blogs/close.png' %}" alt="close"></a>
 		<div class="centered">
@@ -99,7 +99,7 @@
 						<img src="{{object.cover}}" alt="post-image">
 					</div>
 					<div class="entry-header text-center">
-						<h4 class="entry-meta style2">{{object.author}} <span class="circle"></span> {{object.created_on|date:'d M Y'}} <span class="circle"></span> <span class="fb-comments-count" data-href="https://gaurabsapkotaa.com.np{% url 'post_detail' object.slug%}"></span> Comments</h4>
+						<h4 class="entry-meta style2">{{object.author}} <span>{% if comments %} {{comments|length}}{% else %}No{% endif %}</span> Comments</h4>
 						<h1 class="entry-title">{{object.title}}</h1>
 						<h5>{{object.description}}</h5>
 					</div>
@@ -120,10 +120,10 @@
 
 				<div>
 					{% for comm in comments %}
-					{% if comm.replies %}
-					{% for rep in com.replies %}{% endfor %}
 					
-					{% else %}{% endif %}
+					<b>{{comm.author}}</b>-
+					{{comm.comment |safe}}
+					<hr>
 					
 					
 					{% endfor %}
@@ -136,12 +136,27 @@
 					<form method=post>
 						{% csrf_token %}
 						{{form.media}}
-						{{form.as_p |safe}}
+						{% if user.is_authenticated %}
+						Commenting as <b>{{user.get_full_name}}</b><br>
+						{% for f in form %}
+						
+						{% if f.label != "Author" %}
+						{{f.label}}:
+						{{f|safe}}
+						{% endif %}
+						
+						{% endfor %}
+						{% else %}
+						{{form.as_p|safe}}
+						
+
+
+						{% endif %}
+						
 						<input type=submit value="post"></input>
 					</form>
 				</div
 
-				<div class="fb-comments" data-href="https://crogaurabsapkota.herokuapp.com{% url 'post_detail' object.slug%}" data-numposts="5" data-width=""></div>
 
 
 			</div>

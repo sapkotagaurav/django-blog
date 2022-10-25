@@ -88,13 +88,15 @@ class PostDetailView(generic.edit.FormMixin, generic.DetailView):
         
         self.object = self.get_object()
         form = self.get_form()
+        form.instance.author = form.instance.author if form.instance.author else "a"
         if form.is_valid():
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author =  form.instance.author if self.request.user.is_anonymous else self.request.user
+        
         form.instance.post = self.get_object()
         form.save()
         return super(PostDetailView, self).form_valid(form)
