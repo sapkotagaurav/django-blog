@@ -133,7 +133,7 @@ STATICFILES_DIRS =[
 ]
 STATIC_ROOT =os.path.join(BASE_DIR,'staticfiles')
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'ALLOWALL'
 
 CKEDITOR_CONFIGS = {
     'default': {
