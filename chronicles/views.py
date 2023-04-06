@@ -3,8 +3,11 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.http import HttpResponse
 from django.template import loader
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from . import models
 from . import forms
+from.serializers import BlogSerializers
 
 posts = models.Post.objects.filter(status=1).order_by('created_on').reverse()
 years = []
@@ -112,4 +115,12 @@ class CreatePost(generic.CreateView):
         form.instance.author = self.request.user
         form.save()
         return redirect('home')
+
+
+
+class BlogApiView(APIView):
+    def get(self,request):
+        blogs = models.Post.objects.all()
+        serializer = BlogSerializers(blogs,many=True)
+        return Response({"blogs":serializer.data})
     
