@@ -79,6 +79,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'crogaurabsapkota.wsgi.application'
 
+WHITENOISE_MANIFEST_STRICT = False
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Database
