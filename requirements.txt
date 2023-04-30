@@ -8,7 +8,6 @@ CacheControl==0.12.11
 cachy==0.3.0
 certifi==2022.6.15
 chardet==4.0.0
-chrome-gnome-shell==0.0.0
 cleo==0.8.1
 click==8.0.3
 clikit==0.6.2
