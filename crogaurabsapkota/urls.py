@@ -16,7 +16,7 @@ urlpatterns = [
     path("contact/", include('contact.urls')),
     path('blogs/', include('chronicles.urls')),
     path('gallery/', include('gallery.urls')),
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = 'crogaurabsapkota.views.error404'
 
