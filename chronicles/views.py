@@ -120,7 +120,7 @@ class CreatePost(generic.CreateView):
 
 class BlogApiView(APIView):
     def get(self,request):
-        blogs = models.Post.objects.all()
+        blogs = posts
         serializer = BlogSerializers(blogs,many=True)
         return Response({"blogs":serializer.data})
     
