@@ -26,3 +26,4 @@ tinycss2==1.1.1
 tomli==2.0.1
 whitenoise==5.2.0
 gunicorn
+django-cors-headers
